@@ -1,8 +1,8 @@
 # fastlane-files
 
-## lane for CocoaPods
+## CocoaPods lib
 
-### 发布官方库
+### 公开库
 
 ```bash
 fastlane release_public_lib project:"project name" version:"version"
