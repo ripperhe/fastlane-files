@@ -68,14 +68,14 @@ module Fastlane
 
       def self.example_code
         [
-          'remove_git_tag(tag: "0.1.0"), # Delete both local tag and remote tag
-          remove_git_tag(tag: "0.1.0", remove_local: false), # Only delete remote tag
-          remove_git_tag(tag: "0.1.0", remove_remote: false), # 0nly delete local tag'
+          'remove_git_tag(tag: "0.1.0") # Delete both local tag and remote tag',
+          'remove_git_tag(tag: "0.1.0", remove_local: false) # Only delete remote tag',
+          'remove_git_tag(tag: "0.1.0", remove_remote: false) # Only delete local tag'
         ]
       end
 
       def self.category
-        :misc
+        :source_control
       end
     end
   end
