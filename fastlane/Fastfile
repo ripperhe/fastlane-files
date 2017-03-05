@@ -14,7 +14,7 @@ lane :release_lib do |options|
   git_commit(path: '.', message: 'release')
   push_to_git_remote
   if git_tag_exists(tag: target_version)
-      UI.message("Tag #{target_version} already exists, then, delete it!")
+      UI.message("Tag #{target_version} already exists, then, delete it! 💥")
       remove_git_tag(tag: target_version)
   end
   add_git_tag(tag: target_version)
