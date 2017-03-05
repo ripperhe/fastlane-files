@@ -25,4 +25,4 @@ ripperhe, ripperhe@qq.com
 
 ## License
 
-Demo is available under the MIT license. See the LICENSE file for more info.
+Fastlane-files is available under the MIT license. See the LICENSE file for more info.
