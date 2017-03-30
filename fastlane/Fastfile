@@ -1,5 +1,5 @@
 desc 'Release new pod version'
-lane :release_lib do |options|
+lane :release_pod do |options|
   target_repo    = options[:repo]
   target_project = options[:project]
   target_version = options[:version]
@@ -27,5 +27,4 @@ lane :release_lib do |options|
     pod_push(path: spec_path, allow_warnings: true)
     UI.message("Release lib #{target_project} new version #{target_version} to CocoaPods/Specs Successfully! 🎉 ")
   end
-
 end
