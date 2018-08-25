@@ -12,7 +12,7 @@ Create a `fastlane` folder in the root folder of your project and create a `Fast
 import_from_git(url: 'https://github.com/ripperhe/fastlane-files', branch: 'master')
 ```
 
-## How to use
+## Usage
 
 ### Release public pod lib
 
