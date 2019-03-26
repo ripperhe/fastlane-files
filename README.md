@@ -36,6 +36,13 @@ Enter the root directory of your project, and then, enter the following command 
 $ fastlane release_pod repo:"your private sepc repo name" project:"project name" version:"new version"
 ```
 
+### Optional parameters
+
+If you want to add commit information, you can add this parameter:
+
+```bash
+$ fastlane release_pod project:"project name" version:"new version" desc:"commit information"
+```
 
 ## Author
 

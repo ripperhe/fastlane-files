@@ -3,7 +3,13 @@ lane :release_pod do |options|
   target_repo    = options[:repo]
   target_project = options[:project]
   target_version = options[:version]
-  spec_path = "#{target_project}.podspec"
+  target_desc    = options[:desc]
+  spec_path      = "#{target_project}.podspec"
+
+  if target_project.nil? || target_project.empty? || target_version.nil? || target_version.empty?
+    UI.message("❌ project 和 version 为必传参数")
+    exit
+  end
 
   UI.message("👉 Start release lib #{target_project} new version #{target_version}")
 
@@ -11,7 +17,11 @@ lane :release_pod do |options|
   ensure_git_branch
   version_bump_podspec(path: spec_path, version_number: target_version)
   git_add(path: '.')
-  git_commit(path: '.', message: 'release')
+  if target_desc.nil? || target_desc.empty?
+    git_commit(path: '.', message: "release #{target_version}")
+  else
+    git_commit(path: '.', message: "release #{target_version} #{target_desc}")
+  end
   push_to_git_remote
   if git_tag_exists(tag: target_version)
       UI.message("Tag #{target_version} already exists, then, delete it! 💥")
