@@ -7,7 +7,7 @@ lane :release_pod do |options|
   spec_path      = "#{target_project}.podspec"
 
   if target_project.nil? || target_project.empty? || target_version.nil? || target_version.empty?
-    UI.message("❌ project 和 version 为必传参数")
+    UI.message("❌ Project name and version number are required parameters")
     exit
   end
 
@@ -17,10 +17,19 @@ lane :release_pod do |options|
   ensure_git_branch
   version_bump_podspec(path: spec_path, version_number: target_version)
   git_add(path: '.')
-  if target_desc.nil? || target_desc.empty?
-    git_commit(path: '.', message: "release #{target_version}")
-  else
-    git_commit(path: '.', message: "release #{target_version} #{target_desc}")
+  begin
+    if target_desc.nil? || target_desc.empty?
+      git_commit(path: '.', message: "release #{target_version}")
+    else
+      git_commit(path: '.', message: "release #{target_version} #{target_desc}")
+    end
+  rescue
+    error_message = "#{$!}"
+    UI.message("⚠️ commit error:#{error_message}")
+    unless error_message.include?("nothing to commit, working directory clean")
+      exit
+    end
+    UI.message("The local code has committed, skip the commit step!")
   end
   push_to_git_remote
   if git_tag_exists(tag: target_version)
