@@ -21,7 +21,7 @@ lane :release_pod do |options|
     if target_desc.nil? || target_desc.empty?
       git_commit(path: '.', message: "release #{target_version}")
     else
-      git_commit(path: '.', message: "release #{target_version} #{target_desc}")
+      git_commit(path: '.', message: target_desc)
     end
   rescue
     error_message = "#{$!}"
